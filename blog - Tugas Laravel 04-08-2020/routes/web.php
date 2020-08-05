@@ -11,10 +11,22 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/master', function () {
+//     return view('master');
 // });
 
+
+//Tugas Blog
 Route::get('/', 'HomeController@Home' );
 Route::get('/register' , 'AuthController@Register');
 Route::post('/greeting' , 'AuthController@Greeting');   
+
+
+//Tugas Template Blade
+Route::get('/' , function(){
+	return view('content');
+});
+
+Route::get('/data-table' , function(){
+	return view('table');
+});
