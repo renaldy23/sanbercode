@@ -15,6 +15,6 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@Home' );
+// Route::get('/', 'HomeController@Home' );
 Route::get('/register' , 'AuthController@Register');
 Route::post('/greeting' , 'AuthController@Greeting');   
