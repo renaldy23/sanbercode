@@ -16,7 +16,7 @@
 
 			<div id="element-form">
 				<label>Last Name:</label><br>
-				<input type="text" name="name">
+				<input type="text" name="name2">
 			</div><br>
 
 			<div id="element-form">

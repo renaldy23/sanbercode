@@ -11,8 +11,10 @@ class AuthController extends Controller
         return view('register');
     }
 
-    function Greeting()
+    function Greeting( Request $request )
     {
-        return view('greeting');
+    	$nama = $request['name'];
+    	$nama2 = $request ['name2'];
+        return view('greeting' , ['name'=>$nama , 'name2' =>$nama2]);
     }
 }
