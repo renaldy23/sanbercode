@@ -30,3 +30,12 @@ Route::get('/' , function(){
 Route::get('/data-table' , function(){
 	return view('table');
 });
+
+// Tugas CRUD Laravel
+Route::get('/','PertanyaanController@index');
+Route::get('/create','PertanyaanController@create');
+Route::post('/','PertanyaanController@store');
+Route::get('/{id}' , 'PertanyaanController@show');
+Route::get('/{id}/edit' , 'PertanyaanController@edit');
+Route::put('/{id}' , 'PertanyaanController@update');
+Route::delete('{id}' ,'PertanyaanController@destroy');
