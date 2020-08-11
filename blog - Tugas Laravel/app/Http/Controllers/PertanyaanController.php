@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Nanya;
+use Auth;
+
 class PertanyaanController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $pertanyaan = DB::table('pertanyaan')->get();
+        $pertanyaan = Nanya::all();
         return view('forum.data' , ['pertanyaan'=>$pertanyaan]);
     }
 
@@ -36,12 +39,13 @@ class PertanyaanController extends Controller
     public function store(Request $request)
     {
 
-        DB::table('pertanyaan')->insert([
-            "judul"=>$request["judul"] , 
-            "isi"=>$request["isi"]
-        ]);
+        $nanya = new Nanya;
+        $nanya->judul = $request["judul"];
+        $nanya->isi = $request["isi"];
+        $nanya->user_id = Auth::id();
+        $nanya->save();
 
-        return redirect('/');
+        return redirect('/pertanyaan');
     }
 
     /**
@@ -52,7 +56,7 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        $pertanyaan = DB::table('pertanyaan')->where('id',$id)->first();
+        $pertanyaan = Nanya::find($id);
         return view('forum.show' , compact('pertanyaan'));
     }
 
@@ -64,7 +68,7 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        $pertanyaan = DB::table('pertanyaan')->where('id',$id)->first();
+        $pertanyaan = Nanya::find($id);
         return view('forum.edit' , compact('pertanyaan'));
     }
 
@@ -77,13 +81,13 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pertanyaan = DB::table('pertanyaan')
-                            ->where('id' , $id)
-                            ->update([
-                                'judul'=>$request['judul'],
-                                'isi'=>$request['isi']
-                            ]);
-        return redirect('/')->with('success' , 'Berhasil Update Pertanyaan Kamu!');
+        $pertanyaan = Nanya::find($id);
+
+        $pertanyaan->judul = $request["judul"];
+        $pertanyaan->isi = $request["isi"];
+        $pertanyaan->save();
+
+        return redirect('/pertanyaan')->with('success' , 'Berhasil Update Pertanyaan Kamu!');
     }
 
     /**
@@ -94,7 +98,7 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        $query = DB::table('pertanyaan')->where('id' , $id)->delete();
-        return redirect('/')->with('success' , 'Pertanyaan berhasil di Hapus');
+        $pertanyaan = Nanya::destroy($id);
+        return redirect('/pertanyaan')->with('success' , 'Pertanyaan berhasil di Hapus');
     }
 }

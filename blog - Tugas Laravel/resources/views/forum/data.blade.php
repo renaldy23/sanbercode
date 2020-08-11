@@ -20,8 +20,8 @@
                     <!-- <td>07-08-2020</td>
                     <td>07-08-2020</td> -->
                     <td>
-                        <a href="/{{$ask->id}}/edit" class="badge badge-success">Edit</a>
-                        <a href="/{{$ask->id}}" class="badge badge-primary">Detail</a>
+                        <a href="/pertanyaan/{{$ask->id}}/edit" class="badge badge-success">Edit</a>
+                        <a href="/pertanyaan/{{$ask->id}}" class="badge badge-primary">Detail</a>
                         <form action="/{{$ask->id}}" method="POST">
                         @csrf
                         @method('DELETE')

@@ -11,31 +11,36 @@
 |
 */
 
-// Route::get('/master', function () {
-//     return view('master');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+// //Tugas Blog
+// Route::get('/', 'HomeController@Home' );
+// Route::get('/register' , 'AuthController@Register');
+// Route::post('/greeting' , 'AuthController@Greeting');   
+
+
+// //Tugas Template Blade
+// Route::get('/' , function(){
+// 	return view('content');
 // });
 
+// Route::get('/data-table' , function(){
+// 	return view('table');
+// });
 
-//Tugas Blog
-Route::get('/', 'HomeController@Home' );
-Route::get('/register' , 'AuthController@Register');
-Route::post('/greeting' , 'AuthController@Greeting');   
+// // Tugas CRUD Laravel
+Route::get('/pertanyaan','PertanyaanController@index')->middleware('auth');
+Route::get('/pertanyaan/create','PertanyaanController@create');
+Route::post('/pertanyaan','PertanyaanController@store');
+// Route::get('/{id}' , 'PertanyaanController@show')->name("Show pertanyaan sesuai id");
+// Route::get('/{id}/edit' , 'PertanyaanController@edit')->name("Edit pertanyaan sesuai id");
+// Route::put('/{id}' , 'PertanyaanController@update')->name("Update pertanyaan sesuai id");
+// Route::delete('{id}' ,'PertanyaanController@destroy')->name("Hapus pertanyaan");
 
+// Route::resource('pertanyaan' , 'PertanyaanController');
+Auth::routes();
 
-//Tugas Template Blade
-Route::get('/' , function(){
-	return view('content');
-});
-
-Route::get('/data-table' , function(){
-	return view('table');
-});
-
-// Tugas CRUD Laravel
-Route::get('/','PertanyaanController@index');
-Route::get('/create','PertanyaanController@create');
-Route::post('/','PertanyaanController@store');
-Route::get('/{id}' , 'PertanyaanController@show');
-Route::get('/{id}/edit' , 'PertanyaanController@edit');
-Route::put('/{id}' , 'PertanyaanController@update');
-Route::delete('{id}' ,'PertanyaanController@destroy');
+Route::get('/home', 'HomeController@index')->name('home');
