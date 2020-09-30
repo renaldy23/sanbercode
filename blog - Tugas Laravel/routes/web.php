@@ -35,12 +35,19 @@ Route::get('/', function () {
 Route::get('/pertanyaan','PertanyaanController@index')->middleware('auth');
 Route::get('/pertanyaan/create','PertanyaanController@create');
 Route::post('/pertanyaan','PertanyaanController@store');
-// Route::get('/{id}' , 'PertanyaanController@show')->name("Show pertanyaan sesuai id");
-// Route::get('/{id}/edit' , 'PertanyaanController@edit')->name("Edit pertanyaan sesuai id");
-// Route::put('/{id}' , 'PertanyaanController@update')->name("Update pertanyaan sesuai id");
-// Route::delete('{id}' ,'PertanyaanController@destroy')->name("Hapus pertanyaan");
+Route::get('/{id}' , 'PertanyaanController@show')->name("Show pertanyaan sesuai id");
+Route::get('/{id}/edit' , 'PertanyaanController@edit')->name("Edit pertanyaan sesuai id");
+Route::put('/{id}' , 'PertanyaanController@update')->name("Update pertanyaan sesuai id");
+Route::delete('{id}' ,'PertanyaanController@destroy')->name("Hapus pertanyaan");
 
 // Route::resource('pertanyaan' , 'PertanyaanController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/tesdom_pdf' , function (){
+//     $pdf = App::make('dompdf.wrapper');
+//     $pdf->loadHTML('<h1>Test</h1>');
+//     return $pdf->stream();
+// });
+Route::get('/pdf' , 'PDFController@pdf');
